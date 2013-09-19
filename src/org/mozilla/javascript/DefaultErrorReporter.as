@@ -65,7 +65,7 @@ package org.mozilla.javascript
 				return new EvaluatorException(
 					message, sourceName, line, lineSource, lineOffset);
 			}
-			return null;
+			return new EvaluatorException();
 		}
 	}
 }

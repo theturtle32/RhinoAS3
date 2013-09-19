@@ -9,8 +9,8 @@ package org.mozilla.javascript.ast
 		
 		public function Name(pos:int=-1, len:int=-1, name:String = null)
 		{
-			type = Token.NAME;
 			super(pos, len);
+			type = Token.NAME;
 			if (name !== null) {
 				setIdentifier(name);
 				if (len === -1) {

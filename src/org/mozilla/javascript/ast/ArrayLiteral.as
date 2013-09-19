@@ -152,5 +152,13 @@ package org.mozilla.javascript.ast
 			sb += "]";
 			return sb;
 		}
+		
+		override public function visit(v:NodeVisitor):void {
+			if (v.visit(this)) {
+				for each (var e:AstNode in getElements()) {
+					e.visit(v);
+				}
+			}
+		}
 	}
 }

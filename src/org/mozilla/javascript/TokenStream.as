@@ -445,7 +445,7 @@ package org.mozilla.javascript
 							// Save the string in case we need to use in
 							// object literal definitions.
 							
-							allStrings[str] = 0;
+							allStrings["?" + str] = 0;
 							this.string = str;
 							if (result != Token.RESERVED) {
 								return result;
@@ -460,7 +460,7 @@ package org.mozilla.javascript
 						// we convert the last character back to unicode
 						str = convertLastCharToHex(str);
 					}
-					allStrings[str] = 0;
+					allStrings["?" + str] = 0;
 					this.string = str;
 					return Token.NAME;
 				}
@@ -662,7 +662,7 @@ package org.mozilla.javascript
 					}
 					
 					str = getStringFromBuffer();
-					allStrings[str] = 0;
+					allStrings["?" + str] = 0;
 					this.string = str;
 					return Token.STRING;
 				}

@@ -2,6 +2,7 @@ package org.mozilla.javascript.ast
 {
 	import org.as3commons.collections.Map;
 	import org.mozilla.javascript.Node;
+	import org.mozilla.javascript.NodeIterator;
 	import org.mozilla.javascript.Token;
 
 	/**
@@ -341,6 +342,23 @@ package org.mozilla.javascript.ast
 		
 		override public function toSource(depth:int=0):String {
 			throw new Error("FunctionNode$toString() not yet implemented.");
+		}
+		
+		override public function visit(v:NodeVisitor):void {
+			if (v.visit(this)) {
+				if (functionName !== null) {
+					functionName.visit(v);
+				}
+				for each (var param:AstNode in getParams()) {
+					param.visit(v);
+				}
+				getBody().visit(v);
+				if (!isExpressionClosure) {
+					if (memberExprNode !== null) {
+						memberExprNode.visit(v);
+					}
+				}
+			}
 		}
 	}
 }

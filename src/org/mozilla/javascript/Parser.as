@@ -3348,9 +3348,9 @@ package org.mozilla.javascript
 		
 		private function checkCallRequiresActivation(pn:AstNode):void {
 			if ((pn.getType() === Token.NAME
-				&& "eval" === (PropertyGet(pn).getProperty().getIdentifier()))
+				&& "eval" === Name(pn).getIdentifier())
 				|| (pn.getType() === Token.GETPROP &&
-					"eval" === (PropertyGet(pn).getProperty().getIdentifier())))
+					"eval" === PropertyGet(pn).getProperty().getIdentifier()))
 				setRequiresActivation();
 		}
 		

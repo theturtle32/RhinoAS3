@@ -156,7 +156,9 @@ package org.mozilla.javascript.ast
 		public function getDefiningScope(name:String):Scope {
 			for (var s:Scope = this; s !== null; s = s.parentScope) {
 				var symbolTable:Object = s.getSymbolTable();
-				if (symbolTable !== null && name in symbolTable) {
+        // We prepend "?" so that we can use reserved attribute names
+        // like "hasOwnProperty"
+				if (symbolTable !== null && ("?" + name) in symbolTable) {
 					return s;
 				}
 			}
@@ -169,7 +171,9 @@ package org.mozilla.javascript.ast
 		 * @return the Symbol, or {@code null} if not found
 		 */
 		public function getSymbol(name:String):Symbol {
-			return symbolTable === null ? null : symbolTable[name];
+      // We prepend "?" so that we can use reserved attribute names
+      // like "hasOwnProperty"
+      return symbolTable === null ? null : symbolTable["?" + name];
 		}
 		
 		/**
@@ -179,7 +183,9 @@ package org.mozilla.javascript.ast
 			if (symbol.getName() === null)
 				throw new ArgumentError("null symbol name");
 			ensureSymbolTable();
-			symbolTable[symbol.getName()] = symbol;
+      // We prepend "?" so that we can use reserved attribute names
+      // like "hasOwnProperty"
+			symbolTable["?" + symbol.getName()] = symbol;
 			symbol.setContainingTable(this);
 			top.addSymbol(symbol);
 		}

@@ -4,7 +4,7 @@ package org.mozilla.javascript
 	{
 		public function EvaluatorException(detail:String=null, sourceName:String=null, lineNumber:int=-1, lineSource:String=null, columnNumber:int=-1)
 		{
-			super(message);
+			super(detail);
 		}
 	}
 }
