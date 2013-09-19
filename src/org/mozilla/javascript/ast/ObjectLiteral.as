@@ -1,5 +1,7 @@
 package org.mozilla.javascript.ast
 {
+	import org.mozilla.javascript.Token;
+
 	/**
 	 * AST node for an Object literal (also called an Object initialiser in
 	 * Ecma-262).  The elements list will always be non-{@code null}, although
@@ -28,6 +30,7 @@ package org.mozilla.javascript.ast
 		public function ObjectLiteral(pos:int=-1, len:int=-1)
 		{
 			super(pos, len);
+			type = Token.OBJECTLIT;
 		}
 		
 		/**

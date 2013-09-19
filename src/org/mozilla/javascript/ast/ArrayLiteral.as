@@ -1,5 +1,7 @@
 package org.mozilla.javascript.ast
 {
+	import org.mozilla.javascript.Token;
+
 	/**
 	 * AST node for an Array literal.  The elements list will always be
 	 * non-{@code null}, although the list will have no elements if the Array literal
@@ -30,6 +32,7 @@ package org.mozilla.javascript.ast
 		public function ArrayLiteral(pos:int=-1, len:int=-1)
 		{
 			super(pos, len);
+			type = Token.ARRAYLIT;
 		}
 		
 		/**

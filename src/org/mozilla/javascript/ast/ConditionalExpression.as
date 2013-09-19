@@ -1,5 +1,7 @@
 package org.mozilla.javascript.ast
 {
+	import org.mozilla.javascript.Token;
+
 	/**
 	 * AST node representing the ternary operator.  Node type is
 	 * {@link Token#HOOK}.
@@ -25,6 +27,7 @@ package org.mozilla.javascript.ast
 		public function ConditionalExpression(pos:int=-1, len:int=-1)
 		{
 			super(pos, len);
+			type = Token.HOOK;
 		}
 		
 		/**

@@ -34,6 +34,15 @@ package org.mozilla.javascript.ast
 			if (tt === Token.NAME) {
 				buffer += (" " + Name(node).getIdentifier());
 			}
+			else if (tt === Token.STRING) {
+				var string:String = StringLiteral(node).getValue();
+				if (string !== null) {
+					if (string.length > 25) {
+						string = string.slice(0, 30) + "…";
+					}
+					buffer += (" \"" + StringLiteral(node).getValue() + "\"");
+				}
+			}
 			buffer += "\n";
 			return true; // process kids
 		}

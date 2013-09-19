@@ -1,5 +1,7 @@
 package org.mozilla.javascript.ast
 {
+	import org.mozilla.javascript.Token;
+
 	/**
 	 * A continue statement.
 	 * Node type is {@link Token#CONTINUE}.<p>
@@ -17,6 +19,7 @@ package org.mozilla.javascript.ast
 			// can't call super (Jump) for historical reasons
 			position = pos;
 			length = len;
+			type = Token.CONTINUE;
 			if (label !== null)
 				setLabel(label);
 		}
