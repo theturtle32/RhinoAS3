@@ -1,38 +1,40 @@
 package java.lang
 {
+	import org.unicode.utils.UnicodeCategory
+
 	// http://docs.oracle.com/javase/7/docs/api/java/lang/Character.html
 	public class Character
 	{
-		public static const UNASSIGNED:uint = 0;
-		public static const UPPERCASE_LETTER:uint = 1;
-		public static const LOWERCASE_LETTER:uint = 2;
-		public static const TITLECASE_LETTER:uint = 3;
-		public static const MODIFIER_LETTER:uint = 4;
-		public static const OTHER_LETTER:uint = 5;
-		public static const NON_SPACING_MARK:uint = 6;
-		public static const ENCLOSING_MARK:uint = 7;
-		public static const COMBINING_SPACING_MARK:uint = 8;
-		public static const DECIMAL_DIGIT_NUMBER:uint = 9;
-		public static const LETTER_NUMBER:uint = 10;
-		public static const OTHER_NUMBER:uint = 11;
-		public static const SPACE_SEPARATOR:uint = 12;
-		public static const LINE_SEPARATOR:uint = 13;
-		public static const PARAGRAPH_SEPARATOR:uint = 14;
-		public static const CONTROL:uint = 15;
-		public static const FORMAT:uint = 16;
-		public static const PRIVATE_USE:uint = 18;
-		public static const SURROGATE:uint = 19;
-		public static const DASH_PUNCTUATION:uint = 20;
-		public static const START_PUNCTUATION:uint = 21;
-		public static const END_PUNCTUATION:uint = 22;
-		public static const CONNECTOR_PUNCTUATION:uint = 23;
-		public static const OTHER_PUNCTUATION:uint = 24;
-		public static const MATH_SYMBOL:uint = 25;
-		public static const CURRENCY_SYMBOL:uint = 26;
-		public static const MODIFIER_SYMBOL:uint = 27;
-		public static const OTHER_SYMBOL:uint = 28;
-		public static const INITIAL_QUOTE_PUNCTUATION:uint = 29;
-		public static const FINAL_QUOTE_PUNCTUATION:uint = 30;
+        public static const UNASSIGNED:uint = UnicodeCategory.NOT_ASSIGNED_OTHER;
+        public static const UPPERCASE_LETTER:uint = UnicodeCategory.UPPERCASE_LETTER;
+        public static const LOWERCASE_LETTER:uint = UnicodeCategory.LOWERCASE_LETTER;
+        public static const TITLECASE_LETTER:uint = UnicodeCategory.TITLECASE_LETTER;
+        public static const MODIFIER_LETTER:uint = UnicodeCategory.MODIFIER_LETTER;
+        public static const OTHER_LETTER:uint = UnicodeCategory.OTHER_LETTER;
+        public static const NON_SPACING_MARK:uint = UnicodeCategory.NON_SPACING_MARK;
+        public static const ENCLOSING_MARK:uint = UnicodeCategory.ENCLOSING_MARK;
+        public static const COMBINING_SPACING_MARK:uint = UnicodeCategory.COMBINING_SPACING_MARK;
+        public static const DECIMAL_DIGIT_NUMBER:uint = UnicodeCategory.DECIMAL_NUMBER;
+        public static const LETTER_NUMBER:uint = UnicodeCategory.LETTER_NUMBER;
+        public static const OTHER_NUMBER:uint = UnicodeCategory.OTHER_NUMBER;
+        public static const SPACE_SEPARATOR:uint = UnicodeCategory.SPACE_SEPARATOR;
+        public static const LINE_SEPARATOR:uint = UnicodeCategory.LINE_SEPARATOR;
+        public static const PARAGRAPH_SEPARATOR:uint = UnicodeCategory.PARAGRAPH_SEPARATOR;
+        public static const CONTROL:uint = UnicodeCategory.CONTROL_OTHER;
+        public static const FORMAT:uint = UnicodeCategory.FORMAT_OTHER;
+        public static const PRIVATE_USE:uint = UnicodeCategory.PRIVATE_USE_OTHER;
+        public static const SURROGATE:uint = UnicodeCategory.SURROGATE_OTHER;
+        public static const DASH_PUNCTUATION:uint = UnicodeCategory.DASH_PUNCTUATION;
+        public static const START_PUNCTUATION:uint = UnicodeCategory.OPEN_PUNCTUATION;
+        public static const END_PUNCTUATION:uint = UnicodeCategory.CLOSE_PUNCTUATION;
+        public static const CONNECTOR_PUNCTUATION:uint = UnicodeCategory.CONNECTOR_PUNCTUATION;
+        public static const OTHER_PUNCTUATION:uint = UnicodeCategory.OTHER_PUNCTUATION;
+        public static const MATH_SYMBOL:uint = UnicodeCategory.MATH_SYMBOL;
+        public static const CURRENCY_SYMBOL:uint = UnicodeCategory.CURRENCY_SYMBOL;
+        public static const MODIFIER_SYMBOL:uint = UnicodeCategory.MODIFIER_SYMBOL;
+        public static const OTHER_SYMBOL:uint = UnicodeCategory.OTHER_SYMBOL;
+        public static const INITIAL_QUOTE_PUNCTUATION:uint = UnicodeCategory.INITIAL_QUOTE_PUNCTUATION;
+        public static const FINAL_QUOTE_PUNCTUATION:uint = UnicodeCategory.FINAL_QUOTE_PUNCTUATION;
 		
 		public static const ERROR:uint = 0xFFFFFFFF;
 
@@ -94,16 +96,8 @@ package java.lang
 			return getType(codePoint) === DECIMAL_DIGIT_NUMBER;
 		}
 		
-		// FIXME: Make real full-unicode implementation.
-		// right now this only supports ASCII! (mostly)  :-(
 		public static function getType(codePoint:int):int {
-			if (codePoint <= 255) {
-				return map[codePoint];
-			}
-			else if (codePoint === 0x20AC /* € */) {
-				return CURRENCY_SYMBOL;
-			}
-			return OTHER_LETTER;
+			return UnicodeCategory.fromCharCode(codePoint)
 		}
 		
 		public static function isJavaIdentifierStart(codePoint:int):Boolean {
